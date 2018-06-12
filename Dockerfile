@@ -1,13 +1,12 @@
 FROM alpine:edge
 
 RUN apk add --virtual .build-dependencies alpine-sdk subversion \
- && adduser builder \
- && /usr/sbin/addgroup builder abuild \
+ && adduser -D -g abuild abuilder \
  && mkdir -p /var/cache/distfiles /mariadb-apks /mariadb \
  && chgrp abuild /var/cache/distfiles /mariadb-apks /mariadb \
  && chmod g+w /var/cache/distfiles /mariadb-apks /mariadb
 
-USER builder
+USER abuilder
  
 RUN abuild-keygen -a -i -n \
  && svn export https://github.com/alpinelinux/aports.git/trunk/main/mariadb \
@@ -23,4 +22,6 @@ USER root
 WORKDIR /mariadb-apks
 
 RUN apk del .build-dependencies
+# && chown root:root /mariadb-apks \
+# && deluser --remove-all-files abuilder \
 # && rm -rf /mariadb /var/cache/distfiles /var/cache/apk/*

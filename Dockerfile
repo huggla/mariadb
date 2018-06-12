@@ -2,6 +2,7 @@ FROM alpine:edge
 
 RUN apk add --virtual .build-dependencies alpine-sdk subversion \
  && adduser -D -g abuild abuilder \
+ && id abuilder \
  && mkdir -p /var/cache/distfiles /mariadb-apks /abuild \
  && chgrp abuild /var/cache/distfiles /mariadb-apks /abuild \
  && chmod g+w /var/cache/distfiles /mariadb-apks /abuild \

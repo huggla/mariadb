@@ -11,4 +11,5 @@ RUN cd mariadb \
  && sed -i -e 's/pkgver=.*/pkgver=10.3.7/g' APKBUILD \
  && sed -i -e '/ppc-remove-glibc-dep.patch/d' APKBUILD \
  && abuild -F checksum \
+ && apk update \
  && abuild -rF

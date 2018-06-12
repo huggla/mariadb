@@ -7,4 +7,5 @@ RUN apk --no-cache add alpine-sdk subversion \
  && svn export https://github.com/alpinelinux/aports.git/trunk/main/mariadb \
  && cd mariadb \
  && sed -i -e 's/pkgver=10.2.14/pkgver=10.3.7/g' APKBUILD \
+ && abuild -F checksum \
  && abuild -r -F

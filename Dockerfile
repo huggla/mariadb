@@ -8,4 +8,5 @@ RUN apk --no-cache add alpine-sdk subversion \
  
 RUN cd mariadb \
  && sed -i -e 's/pkgver=.*/pkgver=10.3.7/g' APKBUILD \
- && abuild -F checksum
+ && abuild -F checksum \
+ && abuild -rF

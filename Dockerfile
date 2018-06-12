@@ -12,4 +12,4 @@ RUN cd mariadb \
  && sed -i -e '/ppc-remove-glibc-dep.patch/d' APKBUILD \
  && abuild -F checksum \
  && apk update \
- && abuild -rF
+ && abuild -r -F

@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk --no-cache add alpine-sdk subversion \
+RUN apk add --no-cache --virtual .build-dependencies alpine-sdk subversion \
  && mkdir -p /var/cache/distfiles \
  && /usr/sbin/addgroup root abuild \
  && abuild-keygen -a -i -n \
@@ -12,4 +12,8 @@ RUN cd mariadb \
  && sed -i -e '/ppc-remove-glibc-dep.patch/d' APKBUILD \
  && abuild -F checksum \
  && apk update \
- && abuild -r -F
+ && abuild -r -F -p /mariadb-apks \
+ && abuild clean \
+ && cd / \
+ && rm -rf /mariadb \
+ && apk del .build-dependencies

@@ -22,5 +22,5 @@ RUN abuild-keygen -a -i -n \
 USER root
 WORKDIR /mariadb-apks
 
-RUN apk del .build-dependencies \
- && rm -rf /mariadb /var/cache/distfiles /var/cache/apk/*
+RUN apk del .build-dependencies
+# && rm -rf /mariadb /var/cache/distfiles /var/cache/apk/*

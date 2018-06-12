@@ -4,12 +4,12 @@ RUN apk add --virtual .build-dependencies alpine-sdk subversion \
  && adduser -D -G abuild abuilder \
  && mkdir -p /var/cache/distfiles /mariadb-apks /abuild \
  && chgrp abuild /var/cache/distfiles /mariadb-apks /abuild \
- && chmod g+w /var/cache/distfiles /mariadb-apks /abuild \
- && abuild-keygen -a -i -n
-
+ && chmod g+w /var/cache/distfiles /mariadb-apks /abuild
+ 
 USER abuilder
  
 RUN cd /abuild \
+ && abuild-keygen -a -i -n \
  && svn export https://github.com/alpinelinux/aports.git/trunk/main/mariadb \
  && cd mariadb \
  && rm -f ppc-remove-glibc-dep.patch \

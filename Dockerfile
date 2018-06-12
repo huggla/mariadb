@@ -22,7 +22,7 @@ RUN cd /abuild \
 USER root
 WORKDIR /mariadb-apks
 
-RUN apk del .build-dependencies
-# && chown root:root /mariadb-apks \
-# && deluser --remove-all-files abuilder \
-# && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*
+RUN apk del .build-dependencies \
+ && chown root:root /mariadb-apks \
+ && deluser --remove-all-files abuilder \
+ && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*

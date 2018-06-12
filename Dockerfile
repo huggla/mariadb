@@ -9,7 +9,7 @@ RUN apk add --virtual .build-dependencies alpine-sdk subversion \
 USER abuilder
  
 RUN abuild-keygen -a -i -n \
- && svn export https://github.com/alpinelinux/aports.git/trunk/main/mariadb \
+ && svn --force export https://github.com/alpinelinux/aports.git/trunk/main/mariadb \
  && cd mariadb \
  && rm -f ppc-remove-glibc-dep.patch \
  && sed -i -e 's/pkgver=.*/pkgver=10.3.7/g' APKBUILD \

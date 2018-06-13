@@ -14,7 +14,6 @@ RUN cd /abuild \
  && cd mariadb \
  && rm -f ppc-remove-glibc-dep.patch \
  && sed -i -e 's/pkgver=.*/pkgver=10.3.7/g' APKBUILD \
- && sed -i -e 's/arch=.*/arch="x86_64"/g' APKBUILD \
  && sed -i -e '/ppc-remove-glibc-dep.patch/d' APKBUILD \
  && sed -i -e '/cnf/d' APKBUILD \
  && abuild checksum \
@@ -25,6 +24,6 @@ USER root
 WORKDIR /mariadb-apks
 
 RUN apk del .build-dependencies \
- && chown root:root /mariadb-apks \
- && deluser --remove-all-files abuilder \
- && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*
+ && chown root:root /mariadb-apks
+# && deluser --remove-all-files abuilder \
+# && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*

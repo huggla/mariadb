@@ -17,6 +17,7 @@ RUN cd /abuild \
  && sed -i -e '/ppc-remove-glibc-dep.patch/d' APKBUILD \
  && sed -i -e '/cnf/d' APKBUILD \
  && sed -i -e '/pkgdir"\/etc\/mysql/d' APKBUILD \
+ && sed -i -e '/libmysqld\.so\./d' APKBUILD \
  && abuild checksum \
  && abuild -r -p /mariadb-apks \
  && abuild clean

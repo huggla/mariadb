@@ -2,9 +2,9 @@ FROM alpine:edge
 
 RUN apk add --virtual .build-dependencies alpine-sdk subversion \
  && adduser -D -G abuild abuilder \
- && mkdir -p /var/cache/distfiles /mariadb-apks /abuild \
- && chgrp abuild /var/cache/distfiles /mariadb-apks /abuild \
- && chmod g+w /var/cache/distfiles /mariadb-apks /abuild
+ && mkdir -p /var/cache/distfiles /abuild /mariadb-apks \
+ && chgrp abuild /var/cache/distfiles /abuild \
+ && chmod g+w /var/cache/distfiles /abuild
  
 USER abuilder
  
@@ -19,13 +19,13 @@ RUN cd /abuild \
  && sed -i -e '/pkgdir"\/etc\/mysql/d' APKBUILD \
  && sed -i -e '/libmysqld\.so\./d' APKBUILD \
  && abuild checksum \
- && abuild -r -p /mariadb-apks \
+ && abuild -r -p \
  && abuild clean
  
 USER root
 WORKDIR /mariadb-apks
 
 RUN apk del .build-dependencies \
- && chown root:root /mariadb-apks
-# && deluser --remove-all-files abuilder \
-# && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*
+ && mv /home/abuilder/packages/abuild/x86_64/* /mariadb-apks/ \
+ && deluser --remove-all-files abuilder \
+ && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*

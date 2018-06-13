@@ -14,6 +14,7 @@ RUN cd /abuild \
  && cd mariadb \
  && rm -f ppc-remove-glibc-dep.patch \
  && sed -i -e 's/pkgver=.*/pkgver=10.3.7/g' APKBUILD \
+ && sed -i -e 's/rm \\/ls \\/g' APKBUILD \
  && sed -i -e '/ppc-remove-glibc-dep\.patch/d' APKBUILD \
  && sed -i -e '/cnf/d' APKBUILD \
  && sed -i -e '/pkgdir"\/etc\/mysql/d' APKBUILD \

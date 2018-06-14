@@ -26,5 +26,5 @@ USER root
 
 RUN apk del .build-dependencies \
  && mv /home/abuilder/packages/abuild/x86_64/* /mariadb-apks/ \
- && deluser --remove-all-files abuilder \
+ && deluser --remove-home abuilder \
  && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*

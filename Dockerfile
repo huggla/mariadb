@@ -19,6 +19,7 @@ RUN cd /abuild/mariadb \
  && sed -i -e 's/pkgver=.*/pkgver=10.3.8/g' APKBUILD \
  && sed -i -e '/ppc-remove-glibc-dep\.patch/d' APKBUILD \
  && sed -i -e '/cnf/d' APKBUILD \
+ && sed -i -e '/make test/d' APKBUILD \
  && sed -i -e '/pkgdir"\/etc\/mysql/d' APKBUILD \
  && sed -i -e '/libmysqld\.so\./d' APKBUILD \
  && abuild checksum \

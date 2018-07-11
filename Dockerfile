@@ -10,12 +10,14 @@ USER abuilder
  
 RUN cd /abuild \
  && abuild-keygen -a -i -n \
- && svn export https://github.com/alpinelinux/aports.git/trunk/main/mariadb \
- && cd mariadb \
+ && svn export https://github.com/alpinelinux/aports.git/trunk/main/mariadb
+ 
+COPY ./fix-mysql-install-db-path.patch /abuild/mariadb/fix-mysql-install-db-path.patch
+
+RUN cd /abuild/mariadb \
  && rm -f ppc-remove-glibc-dep.patch \
  && sed -i -e 's/pkgver=.*/pkgver=10.3.8/g' APKBUILD \
  && sed -i -e '/ppc-remove-glibc-dep\.patch/d' APKBUILD \
- && sed -i -e '/fix-mysql-install-db-path.patch/d' APKBUILD \
  && sed -i -e '/cnf/d' APKBUILD \
  && sed -i -e '/pkgdir"\/etc\/mysql/d' APKBUILD \
  && sed -i -e '/libmysqld\.so\./d' APKBUILD \

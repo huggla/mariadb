@@ -30,5 +30,6 @@ USER root
 
 RUN apk del .build-dependencies \
  && mv /home/abuilder/packages/abuild/x86_64/* /mariadb-apks/ \
+ && for file in /mariadb-apks/mariadb-*.apk ; do mv "$file" "${file/-10.*/.apk}" ; done \
  && deluser --remove-home abuilder \
  && rm -rf /abuild /var/cache/distfiles /var/cache/apk/*

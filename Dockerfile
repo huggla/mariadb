@@ -16,7 +16,7 @@ COPY ./fix-mysql-install-db-path.patch /abuild/mariadb/fix-mysql-install-db-path
 
 RUN cd /abuild/mariadb \
  && rm -f ppc-remove-glibc-dep.patch \
- && sed -i -e 's/pkgver=.*/pkgver=10.3.8/g' APKBUILD \
+ && sed -i -e 's/pkgver=.*/pkgver=10.3.9/g' APKBUILD \
  && sed -i -e '/ppc-remove-glibc-dep\.patch/d' APKBUILD \
  && sed -i -e '/cnf/d' APKBUILD \
  && sed -i -e '/make test/d' APKBUILD \
